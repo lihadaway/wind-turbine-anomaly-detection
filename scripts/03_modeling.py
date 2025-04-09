@@ -3,12 +3,16 @@
 
 # %%
 # Import libraries
+import warnings
 from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
+
+# Suppress warnings
+warnings.simplefilter("ignore")
 
 # Print start time
 print(f"{datetime.now()} - SCRIPT STARTED")
@@ -40,7 +44,7 @@ X_scaled = scaler.fit_transform(X)
 model = IsolationForest(n_estimators=100, contamination=0.01, random_state=42)
 
 # Fit the model and predict anomalies (-1 for outliers, 1 for inliers)
-print("\nFitting and predicting data...")
+print("\nFitting data and detecting anomalies...")
 df["anomaly"] = model.fit_predict(X_scaled)
 
 # Filter out detected anomalies (outliers)
@@ -50,7 +54,7 @@ df_anomaly = df[df["anomaly"] == -1]
 # ## Anomaly Detection Plot
 # %%
 # Create figure
-print("\nPlotting anomaly detection in power output overtime")
+print("\nPlotting anomaly detection in power output overtime...")
 plt.figure(figsize=(14, 5))
 
 # Line plot for power output
@@ -125,7 +129,7 @@ df_may_22_anomaly = df_may_22[df_may_22["anomaly"] == -1]
 
 # %%
 # Create figure
-print("\nPlotting anomaly detection in power output in May 2022")
+print("\nPlotting anomaly detection in power output in May 2022...")
 plt.figure(figsize=(14, 5))
 
 # Line plot for power output

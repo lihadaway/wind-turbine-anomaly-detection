@@ -16,11 +16,6 @@ print(f"{datetime.now()} - SCRIPT STARTED")
 # ## Data Acquisition
 
 #%%
-directory = "./data"
-
-if not os.path.exists(directory):
-    os.makedirs(directory)
-
 # Define file URLs
 file_links = {
     "SCADA_Data.csv": "https://zenodo.org/records/8192149/files/Aventa_AV7_IET_OST_SCADA.csv?download=1",
@@ -32,7 +27,7 @@ file_links = {
 for filename, url in file_links.items():
     response = requests.get(url)
     if response.status_code == 200:
-        filepath = os.path.join(directory, filename)
+        filepath = os.path.join("./data", filename)
         with open(filepath, "wb") as file:
             file.write(response.content)
         print(f"\n{filename} downloaded successfully!")

@@ -1,7 +1,8 @@
 # Activate the virtual environment
 source venv/bin/activate
 
-# Create a directory named 'plots' if it doesn't already exist
+# Create needed directories if they don't already exist
+mkdir -p data
 mkdir -p plots
 
 # Loop through each Python script in the 'scripts' directory
